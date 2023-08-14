@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            panel1 = new Panel();
             btnZoom = new Button();
             btnMove = new Button();
-            panel1.SuspendLayout();
+            Mid = new Button();
+            Big = new Button();
+            Small = new Button();
+            panel = new Panel();
+            panel.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -46,57 +49,87 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += Button1_Click;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(btnZoom);
-            panel1.Controls.Add(btnMove);
-            panel1.Location = new Point(352, 217);
-            panel1.Margin = new Padding(2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(73, 84);
-            panel1.TabIndex = 1;
-            panel1.Visible = false;
-            // 
             // btnZoom
             // 
-            btnZoom.Location = new Point(9, 45);
-            btnZoom.Margin = new Padding(2);
+            btnZoom.Location = new Point(0, 0);
             btnZoom.Name = "btnZoom";
-            btnZoom.Size = new Size(51, 23);
-            btnZoom.TabIndex = 1;
-            btnZoom.Text = "放大";
-            btnZoom.UseVisualStyleBackColor = true;
+            btnZoom.Size = new Size(75, 23);
+            btnZoom.TabIndex = 0;
             // 
             // btnMove
             // 
-            btnMove.Location = new Point(9, 9);
-            btnMove.Margin = new Padding(2);
+            btnMove.Location = new Point(0, 0);
             btnMove.Name = "btnMove";
-            btnMove.Size = new Size(51, 23);
+            btnMove.Size = new Size(75, 23);
             btnMove.TabIndex = 0;
-            btnMove.Text = "移動";
-            btnMove.UseVisualStyleBackColor = true;
+            // 
+            // Mid
+            // 
+            Mid.Location = new Point(0, 38);
+            Mid.Name = "Mid";
+            Mid.Size = new Size(75, 23);
+            Mid.TabIndex = 1;
+            Mid.Text = "中";
+            Mid.UseVisualStyleBackColor = true;
+            Mid.Visible = false;
+            Mid.Click += Mid_Click;
+            // 
+            // Big
+            // 
+            Big.Location = new Point(0, 9);
+            Big.Name = "Big";
+            Big.Size = new Size(75, 23);
+            Big.TabIndex = 0;
+            Big.Text = "大";
+            Big.UseVisualStyleBackColor = true;
+            Big.Visible = false;
+            Big.Click += Big_Click;
+            // 
+            // Small
+            // 
+            Small.Location = new Point(0, 67);
+            Small.Name = "Small";
+            Small.Size = new Size(75, 23);
+            Small.TabIndex = 2;
+            Small.Text = "小";
+            Small.UseVisualStyleBackColor = true;
+            Small.Visible = false;
+            Small.Click += Small_Click;
+            // 
+            // panel
+            // 
+            panel.Controls.Add(Big);
+            panel.Controls.Add(Small);
+            panel.Controls.Add(Mid);
+            panel.Location = new Point(352, 145);
+            panel.Name = "panel";
+            panel.Size = new Size(75, 92);
+            panel.TabIndex = 3;
+            panel.Visible = false;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(453, 354);
-            Controls.Add(panel1);
+            Controls.Add(panel);
             Controls.Add(button1);
             Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            panel1.ResumeLayout(false);
+            panel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button button1;
-        private Panel panel1;
         private Button btnZoom;
         private Button btnMove;
+        private Button Mid;
+        private Button Big;
+        private Button Small;
+        private Panel panel;
     }
 }
