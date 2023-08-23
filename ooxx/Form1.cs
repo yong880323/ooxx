@@ -148,7 +148,8 @@ namespace ooxx
         }
         #endregion
 
-        #region 顯示判斷大小或者移動選項
+
+        #region 按鈕點擊後顯示O或X
 
         /// <summary>
         /// 顯示判斷大小或者移動選項
@@ -158,62 +159,18 @@ namespace ooxx
         private void ArrBtn_Click(object sender, EventArgs e)
         {
             PictureBox tmp = (PictureBox)sender;//抓取本身位置
-            gbva.ThisIdx = int.TryParse(tmp.Name, out int ThisValue) ? ThisValue : 0;
-            int levenText = int.TryParse(gbva.ArrBtn[gbva.ThisIdx].Text, out int parsedValue) ? parsedValue : 0;
+            tmp.Enabled = true;//是否還能點擊
 
-            //大中小移動選項
-            int levelIndex = (gbva.ArrOX[gbva.ThisIdx] == "Ｏ") ? 3 : 6;
-            Big.Visible = levenText < 3 && gbva.Levenl[levelIndex] < 2;
-            Mid.Visible = levenText < 2 && gbva.Levenl[levelIndex - 1] < 2;
-            Small.Visible = levenText < 1 && gbva.Levenl[levelIndex - 2] < 2;
+            int thisIdx = Convert.ToInt16(tmp.Name);
 
-            if (gbva.ArrBtn[gbva.ThisIdx].Image != null && gbva.ArrOX[gbva.ThisIdx] == gbva.OX[gbva.idx])
-                MoveVisible(gbva.ThisIdx);
+            //tmp.Text = OX[idx]; // 顯示輸入 O 或 X
+            TextToImage(tmp, gbva.OX[gbva.idx]);
+            gbva.ArrOX[thisIdx] = gbva.OX[gbva.idx];
 
-            panel.Visible = true;
+            CheckLine(gbva.OX[gbva.idx]);
 
-        }
-
-        #region 計算階級數量
-
-        /// <summary>
-        /// 計算OX階級數量
-        /// </summary>
-        private void Level_Check()
-        {
-            // 初始化階級數量為0
-            for (int level = 1; level < 10; level++)
-            {
-                gbva.Levenl[level] = 0;
-            }
-            for (int i = 1; i < 10; i++)
-            {
-                int btnindex = (gbva.ArrOX[i] == "Ｏ") ? 0 : 3;
-                int oldindex = (gbva.OldOX[i] == "Ｏ") ? 0 : 3;
-                UpdateLevenl(gbva.ArrBtn[i].Text, btnindex);
-                UpdateLevenl(gbva.Oldlevenl[i], oldindex);
-            }
-        }
-        /// <summary>
-        /// 階級數量累計
-        /// </summary>
-        /// <param name="text"></param>
-        /// <param name="index"></param>
-        private void UpdateLevenl(string text, int index)
-        {
-            switch (text)
-            {
-                case "1":
-                    gbva.Levenl[index + 1]++;
-                    break;
-                case "2":
-                    gbva.Levenl[index + 2]++;
-                    break;
-                case "3":
-                    gbva.Levenl[index + 3]++;
-                    break;
-
-            }
+            gbva.idx = (gbva.idx + 1) % 2; // 設定下次為 O 或 X
+            if (gbva.IniWin) ClearBtn();
         }
         #endregion
 
@@ -286,62 +243,6 @@ namespace ooxx
             PictureBox tmp = (PictureBox)sender;
             tmp.BackColor = Color.White;
         }
-
-        /// <summary>
-        /// 移動按鈕顯示
-        /// </summary>
-        /// <param name="index"></param>
-
-        private void MoveVisible(int index)
-        {
-            int indValue =  int.TryParse(gbva.ArrBtn[index].Text, out int indexValue) ? indexValue : 0;
-            for (int i = 1; i < 10; i++)
-            {
-                int leven =  int.TryParse(gbva.ArrBtn[i].Text, out int ThisValue) ? ThisValue : 0;
-
-                if (leven < indValue)
-                    gbva.MoveBtn[i].Visible = true;
-            }
-            gbva.MoveBtn[index].Visible = false;
-            if (index == 0)
-                for (int i = 1; i < 10; i++)
-                {
-                    gbva.MoveBtn[i].Visible = false;
-                }
-            else
-                SetPictureBoxDisable();
-        }
-        /// <summary>
-        /// 設定無法輸入
-        /// </summary>
-        /// <param name="btn_Idx"></param>
-        private void SetPictureBoxDisable()
-        {
-            for (int i = 1; i < 10; i++)
-            {
-                gbva.ArrBtn[i].Enabled = false;
-                gbva.ArrBtn[i].BackColor = SystemColors.ControlLight;
-            }
-        }
-        /// <summary>
-        /// 設定可以輸入
-        /// </summary>
-        /// <param name="btn_Idx"></param>
-        private void SetPictureBoxEnable(int btn_Idx)
-        {
-            for (int i = 1; i < 10; i++)
-            {
-                gbva.ArrBtn[i].Enabled = true;
-                gbva.ArrBtn[i].BackColor = SystemColors.Window;
-
-            }
-            if (btn_Idx > 0)
-            {
-                gbva.ArrBtn[btn_Idx].Enabled = false;
-                gbva.ArrBtn[btn_Idx].BackColor = SystemColors.ControlLight;
-            }
-        }
-
         #endregion
 
         #region Bingo連線
@@ -407,164 +308,12 @@ namespace ooxx
             {
                 gbva.Levenl[i] = 0;
                 gbva.ArrBtn[i].Image = null;
-                gbva.ArrOX[i] = "";
-                gbva.ArrBtn[i].Text = "0";
-                gbva.Oldlevenl[i]= "0";
-                gbva.OldOX[i] = "";
-                
+                gbva.ArrOX[i] = null;
             }
             gbva.idx = 0;
-            gbva.IniWin = false;
-            SetPictureBoxEnable(0);
-            MoveVisible(0);
-        }
-        #endregion
-
-        #region 階級按鈕
-
-        /// <summary>
-        /// 階級大按鈕
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Big_Click(object sender, EventArgs e)
-        {
-            MoveVisible(0);
-            gbva.ArrBtn[gbva.ThisIdx].Text = "3";
-            Btn_chick(gbva.ArrLevel[2]);
-            Level_Check();
-        }
-
-        /// <summary>
-        /// 階級中按鈕
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Mid_Click(object sender, EventArgs e)
-        {
-            MoveVisible(0);
-            gbva.ArrBtn[gbva.ThisIdx].Text = "2";
-            Btn_chick(gbva.ArrLevel[1]);
-            Level_Check();
-        }
-
-        /// <summary>
-        /// 階級小按鈕
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Small_Click(object sender, EventArgs e)
-        {
-            MoveVisible(0);
-            gbva.ArrBtn[gbva.ThisIdx].Text = "1";
-            Btn_chick(gbva.ArrLevel[0]);
-            Level_Check();
-        }
-
-        #endregion
-
-        #region 移動點擊事件
-
-        /// <summary>
-        /// 移動存取舊位置以及交換位置
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ArrMove_Click(object sender, EventArgs e)
-        {
-            PictureBox tmp = (PictureBox)sender;//抓取本身位置
-            gbva.MoveIdx = Convert.ToInt16(tmp.Name);//新的位置
-            MoveVisible(0);
-
-            Eatox(gbva.MoveIdx);
-
-            gbva.ArrOX[gbva.MoveIdx] = gbva.OX[gbva.idx];//新的抓舊的OX
-            gbva.ArrBtn[gbva.MoveIdx].Text = gbva.ArrBtn[gbva.ThisIdx].Text;//新的抓舊的階層
-
-            Move_chick(int.Parse(gbva.ArrBtn[gbva.ThisIdx].Text));
-            if (gbva.OldOX[gbva.ThisIdx] != null)
-            {
-                gbva.ArrBtn[gbva.ThisIdx].Text = gbva.Oldlevenl[gbva.ThisIdx];//新的移動原本被吃掉的階級變回來
-                gbva.ArrOX[gbva.ThisIdx] = gbva.OldOX[gbva.ThisIdx];//新的移動原本被吃掉的OX變回來
-                gbva.ArrBtn[gbva.ThisIdx].Image = null;
-                TextToImage(gbva.ArrBtn[gbva.ThisIdx], gbva.ArrOX[gbva.ThisIdx], gbva.ArrBtn[gbva.ThisIdx].Text);
-                gbva.Oldlevenl[gbva.ThisIdx] = "";
-                gbva.OldOX[gbva.ThisIdx] = "";
-            }
-            SetPictureBoxEnable(0);
-
-            CheckLine(gbva.ArrOX[gbva.MoveIdx]);
-        }
-
-        private void Eatox(int idx) 
-        {
-            gbva.OldOX[idx] = gbva.ArrOX[idx];//儲存被吃掉的OX
-            gbva.Oldlevenl[idx] = gbva.ArrBtn[idx].Text;//儲存被吃掉的階層
-        }
-
-        #endregion
-
-        #region 按鈕顯示OX以及是否連線
-
-        /// <summary>
-        /// 顯示OX以及是否連線
-        /// </summary>
-        /// <param name="level"></param>
-        private void Btn_chick(int level)
-        {
-            //tmp.Text = OX[idx]; // 顯示輸入 O 或 X
-            TextToImage(gbva.ArrBtn[gbva.ThisIdx], gbva.OX[gbva.idx], gbva.ArrBtn[gbva.ThisIdx].Text);
-            gbva.ArrOX[gbva.ThisIdx] = gbva.OX[gbva.idx];
-            CheckLine(gbva.OX[gbva.idx]);
-
-            gbva.idx = (gbva.idx + 1) % 2; // 設定下次為 O 或 X
-            panel.Visible = false;
-            if (gbva.IniWin) ClearBtn();
-        }
-
-        /// <summary>
-        /// 顯示新的OX和判斷是否連線
-        /// </summary>
-        /// <param name="level"></param>
-        private void Move_chick(int level)
-        {
-            //tmp.Text = OX[idx]; // 顯示輸入 O 或 X
-            if (gbva.OldOX[gbva.ThisIdx] == null)
-            {
-                gbva.ArrBtn[gbva.ThisIdx].Image = null;
-            }
-            gbva.ArrBtn[gbva.MoveIdx].Image = null;
-            TextToImage(gbva.ArrBtn[gbva.MoveIdx], gbva.OX[gbva.idx], gbva.ArrBtn[gbva.ThisIdx].Text);
-
-            gbva.idx = (gbva.idx + 1) % 2; // 設定下次為 O 或 X
-            gbva.ArrBtn[gbva.ThisIdx].Text = "0";
-            gbva.ArrOX[gbva.ThisIdx] = "";
-            panel.Visible = false;
-            if (gbva.IniWin) ClearBtn();
-        }
-
-        #endregion
-
-        #region 遊戲規則
-
-        /// <summary>
-        /// 遊戲規則
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            string gameRules = "規則說明\n\n" +
-                "玩家任選一個大中小(各2隻)輪到的人只能有兩個選擇。\n\n" +
-                "1.出一隻自己選擇的大小，放進場上的任一個空格中，或直接套到任何一隻比較小的上（可以是自己的），吃掉牠！\n\n" +
-                "2.移動你在場上的一隻OX(被吃掉的OX不行)到任一個空格中，或套到另一隻比較小的OX上（可以是自己的）。\n\n" +
-                "3.最後，連成一條線者則獲勝。";
-
-            MessageBox.Show(gameRules, "遊戲規則");
-
+            gbva.IniWin=false;
         } 
         #endregion
-
+>>>>>>>>> Temporary merge branch 2
     }
 }
