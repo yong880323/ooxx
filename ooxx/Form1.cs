@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -107,9 +108,9 @@ namespace ooxx
         /// <param name="x">橫向</param>
         /// <param name="y">直向</param>
         /// <returns>回傳按鈕樣式</returns>
-        private PictureBox CreateBtn(string text,string name, int x,int y) 
+        private PictureBox CreateBtn(string text, string name, int x, int y)
         {
-            
+
             PictureBox button = new PictureBox();
             button.Size = new Size(gbva.X_width, gbva.Y_hight);
             button.Text = text;
@@ -294,10 +295,10 @@ namespace ooxx
 
         private void MoveVisible(int index)
         {
-            int indValue =  int.TryParse(gbva.ArrBtn[index].Text, out int indexValue) ? indexValue : 0;
+            int indValue = int.TryParse(gbva.ArrBtn[index].Text, out int indexValue) ? indexValue : 0;
             for (int i = 1; i < 10; i++)
             {
-                int leven =  int.TryParse(gbva.ArrBtn[i].Text, out int ThisValue) ? ThisValue : 0;
+                int leven = int.TryParse(gbva.ArrBtn[i].Text, out int ThisValue) ? ThisValue : 0;
 
                 if (leven < indValue)
                     gbva.MoveBtn[i].Visible = true;
@@ -409,9 +410,9 @@ namespace ooxx
                 gbva.ArrBtn[i].Image = null;
                 gbva.ArrOX[i] = "";
                 gbva.ArrBtn[i].Text = "0";
-                gbva.Oldlevenl[i]= "0";
+                gbva.Oldlevenl[i] = "0";
                 gbva.OldOX[i] = "";
-                
+
             }
             gbva.idx = 0;
             gbva.IniWin = false;
@@ -496,7 +497,7 @@ namespace ooxx
             CheckLine(gbva.ArrOX[gbva.MoveIdx]);
         }
 
-        private void Eatox(int idx) 
+        private void Eatox(int idx)
         {
             gbva.OldOX[idx] = gbva.ArrOX[idx];//儲存被吃掉的OX
             gbva.Oldlevenl[idx] = gbva.ArrBtn[idx].Text;//儲存被吃掉的階層
@@ -563,7 +564,7 @@ namespace ooxx
 
             MessageBox.Show(gameRules, "遊戲規則");
 
-        } 
+        }
         #endregion
 
     }
