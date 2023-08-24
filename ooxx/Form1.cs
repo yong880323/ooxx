@@ -432,7 +432,7 @@ namespace ooxx
         {
             MoveVisible(0);
             gbva.ArrBtn[gbva.ThisIdx].Text = "3";
-            Btn_chick(gbva.ArrLevel[2]);
+            Btn_chick();
             Level_Check();
         }
 
@@ -445,7 +445,7 @@ namespace ooxx
         {
             MoveVisible(0);
             gbva.ArrBtn[gbva.ThisIdx].Text = "2";
-            Btn_chick(gbva.ArrLevel[1]);
+            Btn_chick();
             Level_Check();
         }
 
@@ -458,7 +458,7 @@ namespace ooxx
         {
             MoveVisible(0);
             gbva.ArrBtn[gbva.ThisIdx].Text = "1";
-            Btn_chick(gbva.ArrLevel[0]);
+            Btn_chick();
             Level_Check();
         }
 
@@ -511,7 +511,7 @@ namespace ooxx
         /// 顯示OX以及是否連線
         /// </summary>
         /// <param name="level"></param>
-        private void Btn_chick(int level)
+        private void Btn_chick()
         {
             //tmp.Text = OX[idx]; // 顯示輸入 O 或 X
             TextToImage(gbva.ArrBtn[gbva.ThisIdx], gbva.OX[gbva.idx], gbva.ArrBtn[gbva.ThisIdx].Text);

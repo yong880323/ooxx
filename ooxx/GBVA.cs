@@ -18,7 +18,6 @@ namespace ooxx
         public int MoveIdx { get; set; } = 0;
         public int[] Levenl { get; set; }
         public bool IniWin { get; set; } = false;
-        public int[] ArrLevel { get; } = { 1, 2, 3 };
         public int X_width { get; set; }
         public int Y_hight { get; set; }
         public int X_left { get; set; }

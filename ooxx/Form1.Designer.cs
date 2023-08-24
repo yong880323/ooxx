@@ -41,10 +41,9 @@
             // 
             // button1
             // 
-            button1.Location = new Point(354, 88);
-            button1.Margin = new Padding(2);
+            button1.Location = new Point(455, 111);
             button1.Name = "button1";
-            button1.Size = new Size(73, 23);
+            button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
             button1.Text = "重新開始";
             button1.UseVisualStyleBackColor = true;
@@ -66,11 +65,32 @@
             btnMove.Text = "移動";
             btnMove.UseVisualStyleBackColor = true;
             // 
+            // Mid
+            // 
+            Mid.Location = new Point(0, 48);
+            Mid.Margin = new Padding(4);
+            Mid.Name = "Mid";
+            Mid.Size = new Size(96, 29);
+            Mid.TabIndex = 3;
+            Mid.Text = "中";
+            Mid.Click += Mid_Click;
+            // 
+            // Big
+            // 
+            Big.Location = new Point(0, 11);
+            Big.Margin = new Padding(4);
+            Big.Name = "Big";
+            Big.Size = new Size(96, 29);
+            Big.TabIndex = 0;
+            Big.Text = "大";
+            Big.Click += Big_Click;
+            // 
             // Small
             // 
-            Small.Location = new Point(0, 67);
+            Small.Location = new Point(0, 85);
+            Small.Margin = new Padding(4);
             Small.Name = "Small";
-            Small.Size = new Size(75, 23);
+            Small.Size = new Size(96, 29);
             Small.TabIndex = 2;
             Small.Text = "小";
             Small.UseVisualStyleBackColor = true;
@@ -79,20 +99,22 @@
             // 
             // panel
             // 
-            panel.Controls.Add(Big);
             panel.Controls.Add(Small);
+            panel.Controls.Add(Big);
             panel.Controls.Add(Mid);
-            panel.Location = new Point(352, 145);
+            panel.Location = new Point(453, 186);
+            panel.Margin = new Padding(4);
             panel.Name = "panel";
-            panel.Size = new Size(75, 92);
+            panel.Size = new Size(96, 115);
             panel.TabIndex = 3;
             panel.Visible = false;
             // 
             // button2
             // 
-            button2.Location = new Point(354, 33);
+            button2.Location = new Point(455, 42);
+            button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(96, 29);
             button2.TabIndex = 4;
             button2.Text = "遊戲規則";
             button2.UseVisualStyleBackColor = true;
@@ -100,13 +122,12 @@
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(453, 354);
+            ClientSize = new Size(582, 448);
             Controls.Add(button2);
             Controls.Add(panel);
             Controls.Add(button1);
-            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
