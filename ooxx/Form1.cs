@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -9,7 +9,7 @@ namespace ooxx
     public partial class Form1 : Form
     {
         /// <summary>
-        /// ¤Ş¤J¦@¥Î°Ñ¼Æ
+        /// å¼•å…¥å…±ç”¨åƒæ•¸
         /// </summary>
         private readonly GBVA gbva = new();
         public Form1()
@@ -17,29 +17,29 @@ namespace ooxx
             InitializeComponent();
         }
 
-        #region Ã¸»s¤E®c®æ
+        #region ç¹ªè£½ä¹å®®æ ¼
         /// <summary>
-        /// ­«¼gOnPaint¤èªk Ã¸»s¤E®c®æ
+        /// é‡å¯«OnPaintæ–¹æ³• ç¹ªè£½ä¹å®®æ ¼
         /// </summary>
-        /// <param name="e">Ã¸¹Ï¬ÛÃö°Ñ¼Æ</param>
+        /// <param name="e">ç¹ªåœ–ç›¸é—œåƒæ•¸</param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            // Àò¨ú¤@­Ó Graphics ¹ï¶H¡A¥Î©óÃ¸¹Ï
+            // ç²å–ä¸€å€‹ Graphics å°è±¡ï¼Œç”¨æ–¼ç¹ªåœ–
             Graphics GPS = e.Graphics;
-            //³Ğ«Ø¤@­Ó¬õ¦â ¼e«×¬O2­Ó³æ¦ì ªºµeµ§¹ï¶H
+            //å‰µå»ºä¸€å€‹ç´…è‰² å¯¬åº¦æ˜¯2å€‹å–®ä½ çš„ç•«ç­†å°è±¡
             Pen MyPen = new(Color.Red, 2f);
-            #region Ã¸¹Ï
+            #region ç¹ªåœ–
 
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    //Ã¸»sª½±ø½u
+                    //ç¹ªè£½ç›´æ¢ç·š
                     GPS.DrawLine(MyPen, gbva.X_left + j * 100, gbva.Y_top,
                                         gbva.X_left + j * 100, gbva.Y_top * 7);
                 }
-                //Ã¸»s¾î±ø½u
+                //ç¹ªè£½æ©«æ¢ç·š
                 GPS.DrawLine(MyPen, gbva.X_left, gbva.Y_top + i * 100,
                                     gbva.X_left * 7, gbva.Y_top + i * 100);
             }
@@ -49,7 +49,7 @@ namespace ooxx
         }
         #endregion
 
-        #region ²£¥Í¤E®c®æ«ö¶s
+        #region ç”¢ç”Ÿä¹å®®æ ¼æŒ‰éˆ•
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -57,14 +57,14 @@ namespace ooxx
         }
 
         /// <summary>
-        /// ¤E®c®æ¶¶§Ç±Æ¦C²£¥Í«ö¶s¨ÃÅã¥Ü¨ìµe­±
+        /// ä¹å®®æ ¼é †åºæ’åˆ—ç”¢ç”ŸæŒ‰éˆ•ä¸¦é¡¯ç¤ºåˆ°ç•«é¢
         /// </summary>
         private void InitBtn()
         {
-            //²£¥Í10­Ó«ö¶s°}¦C
+            //ç”¢ç”Ÿ10å€‹æŒ‰éˆ•é™£åˆ—
             for (int i = 0; i < 10; i++)
             {
-                gbva.ArrOX[i] = "";//®æ¤l³Q¥e¥Î
+                gbva.ArrOX[i] = "";//æ ¼å­è¢«å ç”¨
                 gbva.ArrBtn[i] = new PictureBox
                 {
                     BackColor = SystemColors.Window,
@@ -78,36 +78,36 @@ namespace ooxx
 
                 };
             }
-            //BTN·Ó¤E®c®æ¶¶§Ç±Æ¦C
+            //BTNç…§ä¹å®®æ ¼é †åºæ’åˆ—
             for (int i = 1; i < 4; i++)
             {
                 for (int j = 1; j < 4; j++)
                 {
                     int arr_Idx = ((i - 1) * 3) + j;
 
-                    int loc_x = gbva.X_left + ((i - 1) * 100) + 2;//¾î¦V
-                    int loc_y = gbva.Y_top + ((j - 1) * 100) + 2;//ª½¦V
+                    int loc_x = gbva.X_left + ((i - 1) * 100) + 2;//æ©«å‘
+                    int loc_y = gbva.Y_top + ((j - 1) * 100) + 2;//ç›´å‘
 
 
-                    int Mloc_x = gbva.X_left + ((i - 1) * 100) + 2;//¾î¦V
-                    int Mloc_y = gbva.Y_top + ((j - 1) * 100) + 25;//ª½¦V
+                    int Mloc_x = gbva.X_left + ((i - 1) * 100) + 2;//æ©«å‘
+                    int Mloc_y = gbva.Y_top + ((j - 1) * 100) + 25;//ç›´å‘
 
                     gbva.ArrBtn[arr_Idx] = CreateBtn("0", arr_Idx.ToString(), loc_x, loc_y);
-                    gbva.MoveBtn[arr_Idx] = CreateMoveBtn("²¾°Ê", arr_Idx.ToString(), Mloc_x, Mloc_y);
+                    gbva.MoveBtn[arr_Idx] = CreateMoveBtn("ç§»å‹•", arr_Idx.ToString(), Mloc_x, Mloc_y);
 
-                    Controls.AddRange(new Control[] { gbva.MoveBtn[arr_Idx], gbva.ArrBtn[arr_Idx] });//·s¼W¨ìµe­±
+                    Controls.AddRange(new Control[] { gbva.MoveBtn[arr_Idx], gbva.ArrBtn[arr_Idx] });//æ–°å¢åˆ°ç•«é¢
                 }
             }
         }
 
         /// <summary>
-        /// PictureBox«Ø¥ß
+        /// PictureBoxå»ºç«‹
         /// </summary>
-        /// <param name="text">¶¥¼h</param>
-        /// <param name="name">¼Æ¦r</param>
-        /// <param name="x">¾î¦V</param>
-        /// <param name="y">ª½¦V</param>
-        /// <returns>¦^¶Ç«ö¶s¼Ë¦¡</returns>
+        /// <param name="text">éšå±¤</param>
+        /// <param name="name">æ•¸å­—</param>
+        /// <param name="x">æ©«å‘</param>
+        /// <param name="y">ç›´å‘</param>
+        /// <returns>å›å‚³æŒ‰éˆ•æ¨£å¼</returns>
         private PictureBox CreateBtn(string text, string name, int x, int y)
         {
 
@@ -116,22 +116,22 @@ namespace ooxx
             button.Text = text;
             button.Name = name;
             button.Location = new Point(x, y);
-            button.Click += new EventHandler(ArrBtn_Click);//ÂIÀ»Ä²µo
-            button.MouseEnter += new EventHandler(PictureBox_MouseEnter);//·Æ¹«¾aªñÄ²µo
-            button.MouseLeave += new EventHandler(PictureBox_MouseLeave);//·Æ¹«Â÷¶}Ä²µo
+            button.Click += new EventHandler(ArrBtn_Click);//é»æ“Šè§¸ç™¼
+            button.MouseEnter += new EventHandler(PictureBox_MouseEnter);//æ»‘é¼ é è¿‘è§¸ç™¼
+            button.MouseLeave += new EventHandler(PictureBox_MouseLeave);//æ»‘é¼ é›¢é–‹è§¸ç™¼
             button.BackColor = Color.White;
 
             return button;
         }
 
         /// <summary>
-        /// ²¾°ÊªºPictureBox«Ø¥ß
+        /// ç§»å‹•çš„PictureBoxå»ºç«‹
         /// </summary>
-        /// <param name="text">¶¥¼h</param>
-        /// <param name="name">¼Æ¦r</param>
-        /// <param name="x">¾î¦V</param>
-        /// <param name="y">ª½¦V</param>
-        /// <returns>¦^¶Ç«ö¶s¼Ë¦¡</returns>
+        /// <param name="text">éšå±¤</param>
+        /// <param name="name">æ•¸å­—</param>
+        /// <param name="x">æ©«å‘</param>
+        /// <param name="y">ç›´å‘</param>
+        /// <returns>å›å‚³æŒ‰éˆ•æ¨£å¼</returns>
         private PictureBox CreateMoveBtn(string text, string name, int x, int y)
         {
 
@@ -140,30 +140,30 @@ namespace ooxx
             button.Text = text;
             button.Name = name;
             button.Location = new Point(x, y);
-            TextToImage(button, "²¾°Ê", "4");
+            TextToImage(button, "ç§»å‹•", "4");
             button.Visible = false;
-            button.Click += new EventHandler(ArrMove_Click);//ÂIÀ»Ä²µo
+            button.Click += new EventHandler(ArrMove_Click);//é»æ“Šè§¸ç™¼
             button.BackColor = Color.White;
 
             return button;
         }
         #endregion
 
-        #region Åã¥Ü§PÂ_¤j¤p©ÎªÌ²¾°Ê¿ï¶µ
+        #region é¡¯ç¤ºåˆ¤æ–·å¤§å°æˆ–è€…ç§»å‹•é¸é …
 
         /// <summary>
-        /// Åã¥Ü§PÂ_¤j¤p©ÎªÌ²¾°Ê¿ï¶µ
+        /// é¡¯ç¤ºåˆ¤æ–·å¤§å°æˆ–è€…ç§»å‹•é¸é …
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ArrBtn_Click(object sender, EventArgs e)
         {
-            PictureBox tmp = (PictureBox)sender;//§ì¨ú¥»¨­¦ì¸m
+            PictureBox tmp = (PictureBox)sender;//æŠ“å–æœ¬èº«ä½ç½®
             gbva.ThisIdx = int.TryParse(tmp.Name, out int ThisValue) ? ThisValue : 0;
             int levenText = int.TryParse(gbva.ArrBtn[gbva.ThisIdx].Text, out int parsedValue) ? parsedValue : 0;
 
-            //¤j¤¤¤p²¾°Ê¿ï¶µ
-            int levelIndex = (gbva.ArrOX[gbva.ThisIdx] == "¢İ") ? 3 : 6;
+            //å¤§ä¸­å°ç§»å‹•é¸é …
+            int levelIndex = (gbva.ArrOX[gbva.ThisIdx] == "ï¼¯") ? 3 : 6;
             Big.Visible = levenText < 3 && gbva.Levenl[levelIndex] < 2;
             Mid.Visible = levenText < 2 && gbva.Levenl[levelIndex - 1] < 2;
             Small.Visible = levenText < 1 && gbva.Levenl[levelIndex - 2] < 2;
@@ -175,28 +175,28 @@ namespace ooxx
 
         }
 
-        #region ­pºâ¶¥¯Å¼Æ¶q
+        #region è¨ˆç®—éšç´šæ•¸é‡
 
         /// <summary>
-        /// ­pºâOX¶¥¯Å¼Æ¶q
+        /// è¨ˆç®—OXéšç´šæ•¸é‡
         /// </summary>
         private void Level_Check()
         {
-            // ªì©l¤Æ¶¥¯Å¼Æ¶q¬°0
+            // åˆå§‹åŒ–éšç´šæ•¸é‡ç‚º0
             for (int level = 1; level < 10; level++)
             {
                 gbva.Levenl[level] = 0;
             }
             for (int i = 1; i < 10; i++)
             {
-                int btnindex = (gbva.ArrOX[i] == "¢İ") ? 0 : 3;
-                int oldindex = (gbva.OldOX[i] == "¢İ") ? 0 : 3;
+                int btnindex = (gbva.ArrOX[i] == "ï¼¯") ? 0 : 3;
+                int oldindex = (gbva.OldOX[i] == "ï¼¯") ? 0 : 3;
                 UpdateLevenl(gbva.ArrBtn[i].Text, btnindex);
                 UpdateLevenl(gbva.Oldlevenl[i], oldindex);
             }
         }
         /// <summary>
-        /// ¶¥¯Å¼Æ¶q²Ö­p
+        /// éšç´šæ•¸é‡ç´¯è¨ˆ
         /// </summary>
         /// <param name="text"></param>
         /// <param name="index"></param>
@@ -220,9 +220,9 @@ namespace ooxx
 
         #endregion
 
-        #region ¦r¦êOXÅÜ¦¨¹Ï®×Åã¥Ü
+        #region å­—ä¸²OXè®Šæˆåœ–æ¡ˆé¡¯ç¤º
         /// <summary>
-        /// ¦r¦êOXÅÜ¦¨¹Ï®×Åã¥Ü
+        /// å­—ä¸²OXè®Šæˆåœ–æ¡ˆé¡¯ç¤º
         /// </summary>
         /// <param name="pictureBox1"></param>
         /// <param name="str_OX"></param>
@@ -231,31 +231,31 @@ namespace ooxx
             Color BackColor = Color.Transparent;
             String FontName = "Times New Roman";
             int FontSize = (level == "2") ? 40 :
-                           (level == "3") ? 50 : 20;//¹Ï§Î¤j¤p
+                           (level == "3") ? 50 : 20;//åœ–å½¢å¤§å°
 
             Bitmap bitmap;
             if (pictureBox1.Image != null)
                 bitmap = new Bitmap(pictureBox1.Image);
             else
                 bitmap = new Bitmap(gbva.X_width, gbva.Y_hight);
-            //³]©w¤@­Óµe¥¬ graphics
+            //è¨­å®šä¸€å€‹ç•«å¸ƒ graphics
             Graphics graphics = Graphics.FromImage(bitmap);
-            //ÃC¦â
+            //é¡è‰²
             Color color = Color.Transparent;
-            //¹Ï§Î¤j¤p
+            //åœ–å½¢å¤§å°
             Font font = new(FontName, FontSize);
-            //µ§¨ê
+            //ç­†åˆ·
             SolidBrush BrushBackColor = new(BackColor);
-            //µeµ§(ªºÃC¦â)
+            //ç•«ç­†(çš„é¡è‰²)
             Pen BorderPen = new(color);
-            //Ã¸»s¯x§Î (Point=ÂIªº®y¼Ğ)
+            //ç¹ªè£½çŸ©å½¢ (Point=é»çš„åº§æ¨™)
             Rectangle displayRectangle = new(new Point(0, 0), new Size(Width - 1, Height - 1));
-            //¶ñº¡­I´º(ÃC¦â,¯x§Î)
+            //å¡«æ»¿èƒŒæ™¯(é¡è‰²,çŸ©å½¢)
             graphics.FillRectangle(BrushBackColor, displayRectangle);
-            //µe¥XÃä®Ø¯x§Î
+            //ç•«å‡ºé‚Šæ¡†çŸ©å½¢
             graphics.DrawRectangle(BorderPen, displayRectangle);
-            //Åã¥Üµe¥XO©ÎX
-            if (str_OX == "¢İ")
+            //é¡¯ç¤ºç•«å‡ºOæˆ–X
+            if (str_OX == "ï¼¯")
                 graphics.DrawString(str_OX, font, Brushes.Aqua, 0, 5);
             else
                 graphics.DrawString(str_OX, font, Brushes.Magenta, 0, 5);
@@ -265,10 +265,10 @@ namespace ooxx
 
         #endregion
 
-        #region PictureBox¨Æ¥ó
+        #region PictureBoxäº‹ä»¶
 
         /// <summary>
-        /// ·Æ¹«¾aªñ®ÉÄ²µo
+        /// æ»‘é¼ é è¿‘æ™‚è§¸ç™¼
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -278,7 +278,7 @@ namespace ooxx
             tmp.BackColor = Color.Red;
         }
         /// <summary>
-        /// ·Æ¹«Â÷¶}®ÉÄ²µo
+        /// æ»‘é¼ é›¢é–‹æ™‚è§¸ç™¼
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -289,7 +289,7 @@ namespace ooxx
         }
 
         /// <summary>
-        /// ²¾°Ê«ö¶sÅã¥Ü
+        /// ç§»å‹•æŒ‰éˆ•é¡¯ç¤º
         /// </summary>
         /// <param name="index"></param>
 
@@ -313,7 +313,7 @@ namespace ooxx
                 SetPictureBoxDisable();
         }
         /// <summary>
-        /// ³]©wµLªk¿é¤J
+        /// è¨­å®šç„¡æ³•è¼¸å…¥
         /// </summary>
         /// <param name="btn_Idx"></param>
         private void SetPictureBoxDisable()
@@ -325,7 +325,7 @@ namespace ooxx
             }
         }
         /// <summary>
-        /// ³]©w¥i¥H¿é¤J
+        /// è¨­å®šå¯ä»¥è¼¸å…¥
         /// </summary>
         /// <param name="btn_Idx"></param>
         private void SetPictureBoxEnable(int btn_Idx)
@@ -345,13 +345,13 @@ namespace ooxx
 
         #endregion
 
-        #region Bingo³s½u
+        #region Bingoé€£ç·š
 
         /// <summary>
-        /// ½T»{¬O§_³s½u
+        /// ç¢ºèªæ˜¯å¦é€£ç·š
         /// </summary>
         /// <param name="thisIdx"></param>
-        /// <param name="str_OX">¥Ø«e¬O°é©Î¤e</param>
+        /// <param name="str_OX">ç›®å‰æ˜¯åœˆæˆ–å‰</param>
         private void CheckLine(string str_OX)
         {
             string[,] arrLine = new string[,] {  { "1", "4", "7" }, { "2", "5", "8" }, { "3", "6", "9" },
@@ -370,14 +370,14 @@ namespace ooxx
                 }
                 if (cnt == 3)
                 {
-                    if (str_OX == "¢İ")
+                    if (str_OX == "ï¼¯")
                     {
-                        MessageBox.Show("¢İ Ä¹¤F");
+                        MessageBox.Show("ï¼¯ è´äº†");
                         gbva.IniWin = true;
                     }
                     else
                     {
-                        MessageBox.Show("¢æ Ä¹¤F");
+                        MessageBox.Show("ï¼¸ è´äº†");
                         gbva.IniWin = true;
                     }
                 }
@@ -387,10 +387,10 @@ namespace ooxx
 
         #endregion
 
-        #region ­«·s¶}©l
+        #region é‡æ–°é–‹å§‹
 
         /// <summary>
-        /// ­«·s¶}©l
+        /// é‡æ–°é–‹å§‹
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -400,7 +400,7 @@ namespace ooxx
         }
 
         /// <summary>
-        /// ­«·s¶}©lÁÙ­ì¹w³]
+        /// é‡æ–°é–‹å§‹é‚„åŸé è¨­
         /// </summary>
         private void ClearBtn()
         {
@@ -421,10 +421,10 @@ namespace ooxx
         }
         #endregion
 
-        #region ¶¥¯Å«ö¶s
+        #region éšç´šæŒ‰éˆ•
 
         /// <summary>
-        /// ¶¥¯Å¤j«ö¶s
+        /// éšç´šå¤§æŒ‰éˆ•
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -437,7 +437,7 @@ namespace ooxx
         }
 
         /// <summary>
-        /// ¶¥¯Å¤¤«ö¶s
+        /// éšç´šä¸­æŒ‰éˆ•
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -450,7 +450,7 @@ namespace ooxx
         }
 
         /// <summary>
-        /// ¶¥¯Å¤p«ö¶s
+        /// éšç´šå°æŒ‰éˆ•
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -464,29 +464,29 @@ namespace ooxx
 
         #endregion
 
-        #region ²¾°ÊÂIÀ»¨Æ¥ó
+        #region ç§»å‹•é»æ“Šäº‹ä»¶
 
         /// <summary>
-        /// ²¾°Ê¦s¨úÂÂ¦ì¸m¥H¤Î¥æ´«¦ì¸m
+        /// ç§»å‹•å­˜å–èˆŠä½ç½®ä»¥åŠäº¤æ›ä½ç½®
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ArrMove_Click(object sender, EventArgs e)
         {
-            PictureBox tmp = (PictureBox)sender;//§ì¨ú¥»¨­¦ì¸m
-            gbva.MoveIdx = Convert.ToInt16(tmp.Name);//·sªº¦ì¸m
+            PictureBox tmp = (PictureBox)sender;//æŠ“å–æœ¬èº«ä½ç½®
+            gbva.MoveIdx = Convert.ToInt16(tmp.Name);//æ–°çš„ä½ç½®
             MoveVisible(0);
 
             Eatox(gbva.MoveIdx);
 
-            gbva.ArrOX[gbva.MoveIdx] = gbva.OX[gbva.idx];//·sªº§ìÂÂªºOX
-            gbva.ArrBtn[gbva.MoveIdx].Text = gbva.ArrBtn[gbva.ThisIdx].Text;//·sªº§ìÂÂªº¶¥¼h
+            gbva.ArrOX[gbva.MoveIdx] = gbva.OX[gbva.idx];//æ–°çš„æŠ“èˆŠçš„OX
+            gbva.ArrBtn[gbva.MoveIdx].Text = gbva.ArrBtn[gbva.ThisIdx].Text;//æ–°çš„æŠ“èˆŠçš„éšå±¤
 
             Move_chick(int.Parse(gbva.ArrBtn[gbva.ThisIdx].Text));
             if (gbva.OldOX[gbva.ThisIdx] != null)
             {
-                gbva.ArrBtn[gbva.ThisIdx].Text = gbva.Oldlevenl[gbva.ThisIdx];//·sªº²¾°Ê­ì¥»³Q¦Y±¼ªº¶¥¯ÅÅÜ¦^¨Ó
-                gbva.ArrOX[gbva.ThisIdx] = gbva.OldOX[gbva.ThisIdx];//·sªº²¾°Ê­ì¥»³Q¦Y±¼ªºOXÅÜ¦^¨Ó
+                gbva.ArrBtn[gbva.ThisIdx].Text = gbva.Oldlevenl[gbva.ThisIdx];//æ–°çš„ç§»å‹•åŸæœ¬è¢«åƒæ‰çš„éšç´šè®Šå›ä¾†
+                gbva.ArrOX[gbva.ThisIdx] = gbva.OldOX[gbva.ThisIdx];//æ–°çš„ç§»å‹•åŸæœ¬è¢«åƒæ‰çš„OXè®Šå›ä¾†
                 gbva.ArrBtn[gbva.ThisIdx].Image = null;
                 TextToImage(gbva.ArrBtn[gbva.ThisIdx], gbva.ArrOX[gbva.ThisIdx], gbva.ArrBtn[gbva.ThisIdx].Text);
                 gbva.Oldlevenl[gbva.ThisIdx] = "";
@@ -499,37 +499,37 @@ namespace ooxx
 
         private void Eatox(int idx)
         {
-            gbva.OldOX[idx] = gbva.ArrOX[idx];//Àx¦s³Q¦Y±¼ªºOX
-            gbva.Oldlevenl[idx] = gbva.ArrBtn[idx].Text;//Àx¦s³Q¦Y±¼ªº¶¥¼h
+            gbva.OldOX[idx] = gbva.ArrOX[idx];//å„²å­˜è¢«åƒæ‰çš„OX
+            gbva.Oldlevenl[idx] = gbva.ArrBtn[idx].Text;//å„²å­˜è¢«åƒæ‰çš„éšå±¤
         }
 
         #endregion
 
-        #region «ö¶sÅã¥ÜOX¥H¤Î¬O§_³s½u
+        #region æŒ‰éˆ•é¡¯ç¤ºOXä»¥åŠæ˜¯å¦é€£ç·š
 
         /// <summary>
-        /// Åã¥ÜOX¥H¤Î¬O§_³s½u
+        /// é¡¯ç¤ºOXä»¥åŠæ˜¯å¦é€£ç·š
         /// </summary>
         /// <param name="level"></param>
         private void Btn_chick()
         {
-            //tmp.Text = OX[idx]; // Åã¥Ü¿é¤J O ©Î X
+            //tmp.Text = OX[idx]; // é¡¯ç¤ºè¼¸å…¥ O æˆ– X
             TextToImage(gbva.ArrBtn[gbva.ThisIdx], gbva.OX[gbva.idx], gbva.ArrBtn[gbva.ThisIdx].Text);
             gbva.ArrOX[gbva.ThisIdx] = gbva.OX[gbva.idx];
             CheckLine(gbva.OX[gbva.idx]);
 
-            gbva.idx = (gbva.idx + 1) % 2; // ³]©w¤U¦¸¬° O ©Î X
+            gbva.idx = (gbva.idx + 1) % 2; // è¨­å®šä¸‹æ¬¡ç‚º O æˆ– X
             panel.Visible = false;
             if (gbva.IniWin) ClearBtn();
         }
 
         /// <summary>
-        /// Åã¥Ü·sªºOX©M§PÂ_¬O§_³s½u
+        /// é¡¯ç¤ºæ–°çš„OXå’Œåˆ¤æ–·æ˜¯å¦é€£ç·š
         /// </summary>
         /// <param name="level"></param>
         private void Move_chick(int level)
         {
-            //tmp.Text = OX[idx]; // Åã¥Ü¿é¤J O ©Î X
+            //tmp.Text = OX[idx]; // é¡¯ç¤ºè¼¸å…¥ O æˆ– X
             if (gbva.OldOX[gbva.ThisIdx] == null)
             {
                 gbva.ArrBtn[gbva.ThisIdx].Image = null;
@@ -537,7 +537,7 @@ namespace ooxx
             gbva.ArrBtn[gbva.MoveIdx].Image = null;
             TextToImage(gbva.ArrBtn[gbva.MoveIdx], gbva.OX[gbva.idx], gbva.ArrBtn[gbva.ThisIdx].Text);
 
-            gbva.idx = (gbva.idx + 1) % 2; // ³]©w¤U¦¸¬° O ©Î X
+            gbva.idx = (gbva.idx + 1) % 2; // è¨­å®šä¸‹æ¬¡ç‚º O æˆ– X
             gbva.ArrBtn[gbva.ThisIdx].Text = "0";
             gbva.ArrOX[gbva.ThisIdx] = "";
             panel.Visible = false;
@@ -546,23 +546,23 @@ namespace ooxx
 
         #endregion
 
-        #region ¹CÀ¸³W«h
+        #region éŠæˆ²è¦å‰‡
 
         /// <summary>
-        /// ¹CÀ¸³W«h
+        /// éŠæˆ²è¦å‰‡
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            string gameRules = "³W«h»¡©ú\n\n" +
-                "ª±®a¥ô¿ï¤@­Ó¤j¤¤¤p(¦U2°¦)½ü¨ìªº¤H¥u¯à¦³¨â­Ó¿ï¾Ü¡C\n\n" +
-                "1.¥X¤@°¦¦Û¤v¿ï¾Üªº¤j¤p¡A©ñ¶i³õ¤Wªº¥ô¤@­ÓªÅ®æ¤¤¡A©Îª½±µ®M¨ì¥ô¦ó¤@°¦¤ñ¸û¤pªº¤W¡]¥i¥H¬O¦Û¤vªº¡^¡A¦Y±¼¨e¡I\n\n" +
-                "2.²¾°Ê§A¦b³õ¤Wªº¤@°¦OX(³Q¦Y±¼ªºOX¤£¦æ)¨ì¥ô¤@­ÓªÅ®æ¤¤¡A©Î®M¨ì¥t¤@°¦¤ñ¸û¤pªºOX¤W¡]¥i¥H¬O¦Û¤vªº¡^¡C\n\n" +
-                "3.³Ì«á¡A³s¦¨¤@±ø½uªÌ«hÀò³Ó¡C";
+            string gameRules = "è¦å‰‡èªªæ˜\n\n" +
+                "ç©å®¶ä»»é¸ä¸€å€‹å¤§ä¸­å°(å„2éš»)è¼ªåˆ°çš„äººåªèƒ½æœ‰å…©å€‹é¸æ“‡ã€‚\n\n" +
+                "1.å‡ºä¸€éš»è‡ªå·±é¸æ“‡çš„å¤§å°ï¼Œæ”¾é€²å ´ä¸Šçš„ä»»ä¸€å€‹ç©ºæ ¼ä¸­ï¼Œæˆ–ç›´æ¥å¥—åˆ°ä»»ä½•ä¸€éš»æ¯”è¼ƒå°çš„ä¸Šï¼ˆå¯ä»¥æ˜¯è‡ªå·±çš„ï¼‰ï¼Œåƒæ‰ç‰ ï¼\n\n" +
+                "2.ç§»å‹•ä½ åœ¨å ´ä¸Šçš„ä¸€éš»OX(è¢«åƒæ‰çš„OXä¸è¡Œ)åˆ°ä»»ä¸€å€‹ç©ºæ ¼ä¸­ï¼Œæˆ–å¥—åˆ°å¦ä¸€éš»æ¯”è¼ƒå°çš„OXä¸Šï¼ˆå¯ä»¥æ˜¯è‡ªå·±çš„ï¼‰ã€‚\n\n" +
+                "3.æœ€å¾Œï¼Œé€£æˆä¸€æ¢ç·šè€…å‰‡ç²å‹ã€‚";
 
-            MessageBox.Show(gameRules, "¹CÀ¸³W«h");
+            MessageBox.Show(gameRules, "éŠæˆ²è¦å‰‡");
 
         }
         #endregion
