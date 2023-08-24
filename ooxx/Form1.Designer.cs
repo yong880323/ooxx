@@ -63,28 +63,8 @@
             btnMove.Name = "btnMove";
             btnMove.Size = new Size(75, 23);
             btnMove.TabIndex = 0;
-            // 
-            // Mid
-            // 
-            Mid.Location = new Point(0, 38);
-            Mid.Name = "Mid";
-            Mid.Size = new Size(75, 23);
-            Mid.TabIndex = 1;
-            Mid.Text = "中";
-            Mid.UseVisualStyleBackColor = true;
-            Mid.Visible = false;
-            Mid.Click += Mid_Click;
-            // 
-            // Big
-            // 
-            Big.Location = new Point(0, 9);
-            Big.Name = "Big";
-            Big.Size = new Size(75, 23);
-            Big.TabIndex = 0;
-            Big.Text = "大";
-            Big.UseVisualStyleBackColor = true;
-            Big.Visible = false;
-            Big.Click += Big_Click;
+            btnMove.Text = "移動";
+            btnMove.UseVisualStyleBackColor = true;
             // 
             // Small
             // 
